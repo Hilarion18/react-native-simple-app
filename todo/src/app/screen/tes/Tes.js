@@ -11,14 +11,17 @@ import {
   TouchableOpacity
 } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
+import { observable } from 'mobx'
+import { observer } from 'mobx-react'
 
+@observer
 export class TesScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       enteredText: '',
       setEnteredText: '',
-      list: ['a', 'b', 'c'],
+      @observable list: ['a', 'b', 'c', 'd'],
       arrText: []
     };
   }
