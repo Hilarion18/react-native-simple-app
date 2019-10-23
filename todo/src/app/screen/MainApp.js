@@ -1,11 +1,12 @@
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { HomeScreen } from './homepage/Home';
+import HomeScreen from './homepage/Home';
 import { TodoScreen } from './todo/Todo'
 import { HistoryScreen } from './history/History'
 import { TesScreen } from './tes/Tes'
-
+import Store from '../store/Store'
+import { inject } from 'mobx-react';
 
 const MainApp = createBottomTabNavigator(
     {
@@ -20,6 +21,7 @@ const MainApp = createBottomTabNavigator(
         tabBarIcon: ({focused, tintColor}) => {
           const {routeName} = navigation.state;
           let iconName;
+          const Store = Store;
           if (routeName === 'Home') {
             iconName = `home${focused ? '' : '-outline'}`;
           } else if (routeName === 'Todo') {

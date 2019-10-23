@@ -27,6 +27,10 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import {AppContainer} from './src/routes/Index';
 console.disableYellowBox = true;
+import { Provider as MobxProvider } from 'mobx-react'
+import Stores from './src/app/store/Store'
+import { configure } from 'mobx'
+configure({ enforceActions: 'always' })
 
 export default class App extends Component {
   constructor(props) {
@@ -34,7 +38,11 @@ export default class App extends Component {
   }
 
   render() {
-    return <AppContainer />;
+    return (
+      <MobxProvider stores={Stores}>
+        <AppContainer />
+      </MobxProvider>
+    )
   }
 }
 

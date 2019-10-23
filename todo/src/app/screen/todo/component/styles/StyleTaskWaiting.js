@@ -30,6 +30,7 @@ export default StyleSheet.create({
   icon: {
     borderColor: "gray",
     borderWidth: 0.7,
-    padding: 2
+    padding: 2,
+    borderRadius: 40
   }
 })

@@ -18,63 +18,30 @@ import {
 } from 'react-native';
 import { List, ListItem, SearchBar } from "react-native-elements";
 import styles from '../styles/StyleTaskDone'
+import { observable, computed, action } from 'mobx'
+import { observer, inject } from 'mobx-react'
 
-export class TaskDone extends Component {
+// @inject('stores')
+@observer
+class TaskDone extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      taskDone: [
-        {
-          id: 1,
-          title: "create navbar",
-          description: "create navbar using component",
-          point: 1
-        },
-        {
-          id: 2,
-          title: "create home page",
-          description: "consume API",
-          point: 2
-        },
-        {
-          id: 3,
-          title: "create todo page",
-          description: "consume API create CRUD tasks",
-          point: 3
-        },
-        {
-          id: 4,
-          title: "create history page",
-          description: "consume API from history",
-          point: 2
-        },
-        {
-          id: 5,
-          title: "create navbar",
-          description: "create navbar using component",
-          point: 1
-        },
-        {
-          id: 6,
-          title: "create home page",
-          description: "consume API",
-          point: 2
-        },
-        {
-          id: 7,
-          title: "create todo page",
-          description: "consume API create CRUD tasks",
-          point: 3
-        },
-        {
-          id: 8,
-          title: "create history page",
-          description: "consume API from history",
-          point: 2
-        }
-      ],
+      taskDone: []
     }
   }
+
+  renderTaskDone = async() => {
+    const { stores } = this.props
+    this.setState({
+      taskDone: stores.taskDone
+    })
+  }
+
+  componentDidMount() {
+    this.renderTaskDone()
+  }
+  
   render() {
     return(
       <View>
@@ -95,3 +62,5 @@ export class TaskDone extends Component {
     )
   }
 }
+
+export default inject('stores')(TaskDone)

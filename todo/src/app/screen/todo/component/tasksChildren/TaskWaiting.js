@@ -19,40 +19,62 @@ import {
 import { List, ListItem, SearchBar } from "react-native-elements";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from '../styles/StyleTaskWaiting'
+import { observable, computed, action } from 'mobx'
+import { observer, inject } from 'mobx-react'
 
-export class TaskWaiting extends Component {
+@observer
+class TaskWaiting extends Component {
   constructor(props) {
     super(props) 
     this.state = {
-      taskWaiting: [
-        {
-          id: 6,
-          title: "create authentication login",
-          description: "creating authentication to save to database",
-          point: 3
-        },
-        {
-          id: 7,
-          title: "create google maps",
-          description: "create google to be used for saving place in the future",
-          point: 3
-        }
-      ],
+      taskWaiting: [],
+      taskOngoing: [],
+      taskCancelled: []
     }
+  }
+
+  // @computed
+  // get taskWaiting() {
+  //   return this.state.taskWaiting
+  // }
+
+  // @computed
+  // get taskOngoing() {
+  //   return this.state.taskOngoing
+  // }
+
+  renderTaskWaiting() {
+    const { stores } = this.props
+    this.setState({
+      taskWaiting: stores.taskWaiting,
+      taskOngoing: stores.taskOngoing
+    })
+  }
+
+  componentDidMount() {
+    this.renderTaskWaiting()
   }
 
   onChangeValue = event => {
     this.setState({ value: event.target.value });
   };
 
+  @action
   _addItem = (val) => {
-    console.log(val);
+    const { stores } = this.props
+    stores.setTaskWaiting(val)
+    this.setState({
+      taskOngoing: stores.taskOngoing,
+      taskWaiting: stores.taskWaiting
+    })
   };
 
+  @action
   _deleteItem = (itemId) => {
     const updatedTaskWaiting = this.state.taskWaiting.filter((item) => item.id !== itemId)
     this.setState({
-      taskWaiting: updatedTaskWaiting
+      taskWaiting: updatedTaskWaiting,
+      taskCancelled: [...stores.taskCancelled, itemId]
     })
   }
 
@@ -72,14 +94,14 @@ export class TaskWaiting extends Component {
                   </View>
                   <TouchableHighlight
                     value={item.id}
-                    onPress={() => this._addItem(item.id)}
+                    onPress={() => this._addItem(item)}
                     underlayColor="white"
                     style={styles.iconItem}
                   >
                     <Icon style={styles.icon} name="check" size={23} color="#5fb660" /> 
                   </TouchableHighlight>
                   <TouchableHighlight
-                      onPress={() => this._deleteItem(item.id)}
+                      onPress={() => this._deleteItem(item)}
                       style={styles.iconItem}
                     >
                       <Icon style={styles.icon} name="remove" size={25} color="#d75452" />
@@ -108,3 +130,5 @@ export class TaskWaiting extends Component {
     )
   }
 }
+
+export default inject('stores')(TaskWaiting)

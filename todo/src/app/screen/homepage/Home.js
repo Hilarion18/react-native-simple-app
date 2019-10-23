@@ -11,43 +11,14 @@ import {
   FlatList,
   ListView
 } from 'react-native';
-import { TodoReport } from './component/TodoReport'
+import TodoReport from './component/TodoReport'
+import { inject } from 'mobx-react';
 
-export class HomeScreen extends React.Component {
+class HomeScreen extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      name: "bacot",
-      todoList: {
-        taskDone: "Task done",
-        totalTaskDone: 5,
-        taskOngoing: "Task on going",
-        totalTaskOngoing: 2,
-        taskUntaken: "Task not taken",
-        totalTaskUntaken: 10
-      },
-      todos: [
-        {
-          content: "Task done",
-          total: 5
-        },
-        {
-          content: "Task on going",
-          total: 2
-        },
-        {
-          content: "Task not taken",
-          total: 10
-        }
-      ],
-      arr: [
-        "text1", "text2"
-      ]
     }
-  }
-  
-  componentDidMount() {
-    
   }
 
   render() {
@@ -61,3 +32,5 @@ export class HomeScreen extends React.Component {
     );
   }
 }
+
+export default HomeScreen

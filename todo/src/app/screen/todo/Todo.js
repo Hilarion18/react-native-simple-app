@@ -9,7 +9,7 @@ import {
   TextInput,
   Button
 } from 'react-native';
-import { TaskList } from './component/TaskList'
+import TaskList from './component/TaskList'
 
 export class TodoScreen extends React.Component {
   render() {
