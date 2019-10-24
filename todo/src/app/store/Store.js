@@ -32,33 +32,33 @@ class Store {
     },
     {
       id: 5,
-      title: "create navbar",
-      description: "create navbar using component",
+      title: "create add task waiting",
+      description: "create endpoint and logic",
       point: 1
     },
     {
       id: 6,
-      title: "create home page",
-      description: "consume API",
+      title: "create add task on going",
+      description: "create endpoint and logic",
       point: 2
     },
     {
       id: 7,
-      title: "create todo page",
-      description: "consume API create CRUD tasks",
+      title: "create reject task waiting",
+      description: "create endpoint and logic",
       point: 3
     },
     {
       id: 8,
-      title: "create history page",
-      description: "consume API from history",
+      title: "create reject task ongoing",
+      description: "create endpoint and logic",
       point: 2
     }
   ]
 
   @observable taskOngoing = [
     {
-      id: 5,
+      id: 9,
       title: "create filter and sort task in history page",
       description: "using sorting and filtering for task in  history page",
       point: 1
@@ -67,13 +67,13 @@ class Store {
 
   @observable taskWaiting = [
     {
-      id: 6,
+      id: 10,
       title: "create authentication login",
       description: "creating authentication to save to database",
       point: 3
     },
     {
-      id: 7,
+      id: 11,
       title: "create google maps",
       description: "create google to be used for saving place in the future",
       point: 3
@@ -82,7 +82,7 @@ class Store {
 
   @observable taskCancelled = [
     {
-      id: 8,
+      id: 12,
       title: "create amnimated payment successed",
       description: "create animated if payment successed and redirect after 2 seconds",
       point: 5

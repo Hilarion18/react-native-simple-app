@@ -84,14 +84,14 @@ class TaskOngoing extends Component {
                   </View>
                   <TouchableHighlight
                     value={item.id}
-                    onPress={() => this._addItem(item.id)}
+                    onPress={() => this._addItem(item)}
                     underlayColor="white"
                     style={styles.iconItem}
                   >
                     <Icon style={styles.icon} name="check" size={23} color="#5fb660" /> 
                   </TouchableHighlight>
                   <TouchableHighlight
-                      onPress={() => this._deleteItem(item.id)}
+                      onPress={() => this._deleteItem(item)}
                       style={styles.iconItem}
                     >
                       <Icon style={styles.icon} name="remove" size={25} color="#d75452" />

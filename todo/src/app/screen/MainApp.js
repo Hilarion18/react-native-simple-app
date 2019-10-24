@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import HomeScreen from './homepage/Home';
 import { TodoScreen } from './todo/Todo'
 import { HistoryScreen } from './history/History'
-import { TesScreen } from './tes/Tes'
+// import { TesScreen } from './tes/Tes'
 import Store from '../store/Store'
 import { inject } from 'mobx-react';
 
@@ -13,7 +13,7 @@ const MainApp = createBottomTabNavigator(
       Home: {screen: HomeScreen},
       Todo: {screen: TodoScreen},
       History: {screen: HistoryScreen},
-      Tes: {screen: TesScreen}
+      // Tes: {screen: TesScreen}
     },
     {
       defaultNavigationOptions: ({navigation}) => ({
@@ -28,8 +28,8 @@ const MainApp = createBottomTabNavigator(
             iconName = `map-clock${focused ? '' : '-outline'}`;
           } else if (routeName === 'History') {
             iconName = `book${focused ? '' : '-outline'}`;
-          } else if (routeName === 'Tes') {
-            iconName = `phone${focused ? '' : '-outline'}`;
+          // } else if (routeName === 'Tes') {
+          //   iconName = `phone${focused ? '' : '-outline'}`;
           }
   
           // You can return any component that you like here! We usually use an

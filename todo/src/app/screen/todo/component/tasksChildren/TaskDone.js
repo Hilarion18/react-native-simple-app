@@ -51,7 +51,7 @@ class TaskDone extends Component {
             renderItem={({ item }) => (
               <ListItem style={styles.itemList}
               roundAvatar 
-              title={`${item.title}`}
+              title={`${item.id}. ${item.title}`}
               subtitle = {item.description}
               />
             )}

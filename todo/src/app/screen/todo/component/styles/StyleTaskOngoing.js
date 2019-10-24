@@ -2,7 +2,7 @@ import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
   taskList: {
-    padding: 10
+    padding: 20
   },
   itemList: {
     borderColor: "gray",
@@ -30,7 +30,7 @@ export default StyleSheet.create({
   icon: {
     borderColor: "gray",
     borderWidth: 0.7,
-    padding: 2,
+    padding: 5.5,
     borderRadius: 40
   },
 })
