@@ -3,11 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="2ea605b0-c659-4753-909d-37886bd0b173" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo/babel.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/todo/babel.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/todo/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/todo/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo/src/app/screen/tes/Tes.js" beforeDir="false" afterPath="$PROJECT_DIR$/todo/src/app/screen/tes/Tes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/todo/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/todo/yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/todo/src/app/screen/todo/component/tasksChildren/TaskOngoing.js" beforeDir="false" afterPath="$PROJECT_DIR$/todo/src/app/screen/todo/component/tasksChildren/TaskOngoing.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,8 +25,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -47,6 +41,8 @@
           <select />
         </subPane>
       </pane>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">

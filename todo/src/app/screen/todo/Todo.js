@@ -9,13 +9,13 @@ import {
   TextInput,
   Button
 } from 'react-native';
-import { TaskList } from './component/TaskList'
+import TaskList from './component/TaskList'
 
-export class TodoScreen extends React.Component {
+export default class TodoScreen extends React.Component {
   render() {
     return (
       <View style={styles.todoPage}>
-        <TaskList />
+        <TaskList navigation={this.props.navigation}/>
       </View>
     );
   }

@@ -2,19 +2,26 @@ import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
   taskList: {
-    padding: 10
+    padding: 20
   },
   itemList: {
     borderColor: "gray",
     borderWidth: 0.4,
+    flex: 1,
+    backgroundColor: "#DDDD",
+    height: 90,
+    maxHeight: 90
   },
   columnItem: {
     flexDirection: "column",
-    maxWidth: 270
+    maxWidth: 270,
+    padding: 5,
+    flex: 5
   },
   rowItem: {
     flexDirection: "row",
-    justifyContent: "space-between"
+    justifyContent: "space-evenly",
+    alignContent: 'center'
   },
   titleItem: {
     fontSize: 18,
@@ -30,6 +37,7 @@ export default StyleSheet.create({
   icon: {
     borderColor: "gray",
     borderWidth: 0.7,
-    padding: 2
+    padding: 5.5,
+    borderRadius: 40
   }
 })

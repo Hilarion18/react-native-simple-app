@@ -19,36 +19,48 @@ import {
 import { List, ListItem, SearchBar } from "react-native-elements";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import styles from  '../styles/StyleTaskOngoing'
+import { observable, computed, action } from 'mobx'
+import { observer, inject } from 'mobx-react'
 
-export class TaskOngoing extends Component {
+@observer
+class TaskOngoing extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      taskOngoing: [
-        {
-          id: 5,
-          title: "create filter and sort task in history page",
-          description: "using sorting and filtering for task in  history page",
-          point: 1
-        }
-      ],
+      taskOngoing: [],
+      taskDone: [],
       done: '',
       doneMark: [],
       setDoneMark: []
     }
   }
+  
+  renderTaskOngoing = async() => {
+    const { stores } = this.props
+    this.setState({
+      taskOngoing: stores.taskOngoing
+    })
+  }
 
   componentDidMount() {
+    this.renderTaskOngoing()
   }
 
   onChangeValue = event => {
     this.setState({ value: event.target.value });
   };
 
+  @action
   _addItem = (val) => {
-    console.log(val);
+    const { stores } = this.props
+    stores.setTaskOngoing(val)
+    this.setState({
+      taskDone: stores.taskDone,
+      taskOngoing: stores.taskOngoing
+    })
   };
 
+  @action
   _deleteItem = (itemId) => {
     const updatedTaskOngoing = this.state.taskOngoing.filter((item) => item.id !== itemId)
     this.setState({
@@ -67,19 +79,19 @@ export class TaskOngoing extends Component {
               <View style={styles.itemList}>
                 <View style={styles.rowItem}>
                   <View  style={styles.columnItem}>
-                    <Text style={styles.titleItem}>{item.title}</Text>
+                    <Text style={styles.titleItem}>{item.id}. {item.title}</Text>
                     <Text style={styles.descItem}>{item.description}</Text>
                   </View>
                   <TouchableHighlight
                     value={item.id}
-                    onPress={() => this._addItem(item.id)}
+                    onPress={() => this._addItem(item)}
                     underlayColor="white"
                     style={styles.iconItem}
                   >
                     <Icon style={styles.icon} name="check" size={23} color="#5fb660" /> 
                   </TouchableHighlight>
                   <TouchableHighlight
-                      onPress={() => this._deleteItem(item.id)}
+                      onPress={() => this._deleteItem(item)}
                       style={styles.iconItem}
                     >
                       <Icon style={styles.icon} name="remove" size={25} color="#d75452" />
@@ -95,3 +107,5 @@ export class TaskOngoing extends Component {
     )
   }
 }
+
+export default inject('stores')(TaskOngoing)

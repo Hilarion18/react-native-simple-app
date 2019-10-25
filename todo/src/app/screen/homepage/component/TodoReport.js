@@ -11,48 +11,41 @@ import {
   FlatList,
   ListView
 } from 'react-native';
+import { computed } from 'mobx';
+import { inject, observer } from 'mobx-react';
+import styles from '../styles/StyleTodoReport'
 
-export class TodoReport extends Component {
+@observer
+class TodoReport extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      todoList: {
-        taskDone: "Task done",
-        totalTaskDone: 5,
-        taskOngoing: "Task on going",
-        totalTaskOngoing: 2,
-        taskUntaken: "Task not taken",
-        totalTaskUntaken: 10
-      },
-      todos: [
-        {
-          id: 1,
-          content: "Task done",
-          total: 5
-        },
-        {
-          id: 2,
-          content: "Task on going",
-          total: 2
-        },
-        {
-          id: 3,
-          content: "Task not taken",
-          total: 10
-        }
-      ],
+      todos: []
     }
+  }
+
+  @computed
+  get todoData() {
+    return this.state.todos
+  }
+
+  renderDoneTask = async() => {
+    const { stores } = this.props
+    this.setState({
+      todos: stores.todosList
+    })
   }
   
   componentDidMount() {
-    
+    this.renderDoneTask()
   }
 
   render() {
+    const { stores } = this.props
     return (
       <View >
         <View style={styles.scopeTodo}>
-            {this.state.todos.map((item, index) => (
+            {stores.todosList.map((item, index) => (
             <View style={styles.todoColumn}>
                 <Text style={styles.textTodo}>{item.content}</Text>
                 <Text style={styles.textScore}>{item.total}</Text>
@@ -64,26 +57,5 @@ export class TodoReport extends Component {
   }
 }
 
-const styles = StyleSheet.create({
-  todoColumn: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: 'space-between',
-    borderWidth: 1,
-    borderColor: "black",
-    marginBottom: 10,
-    backgroundColor: "#DCDCDC"
-  },
-  scopeTodo: {
-    padding: 50,
-  },
-  textTodo: {
-    fontSize: 25
-  },
-  textScore: {
-    textAlign: "right",
-    fontSize: 25,
-    color: "green",
-    paddingRight: 10
-  },
-})
+
+export default inject('stores')(TodoReport)
