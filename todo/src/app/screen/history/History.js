@@ -9,7 +9,7 @@ import {
   TextInput,
   Button
 } from 'react-native';
-import { TodoHistory } from './component/TodoHistory'
+import TodoHistory from './component/TodoHistory'
 
 export class HistoryScreen extends React.Component {
   render() {

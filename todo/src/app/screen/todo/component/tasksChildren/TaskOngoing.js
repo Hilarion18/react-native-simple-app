@@ -62,9 +62,10 @@ class TaskOngoing extends Component {
 
   @action
   _deleteItem = (itemId) => {
-    const updatedTaskOngoing = this.state.taskOngoing.filter((item) => item.id !== itemId)
+    const { stores } = this.props
+    stores.setTaskCancelled(val)
     this.setState({
-      taskOngoing: updatedTaskOngoing
+      taskWaiting: stores.taskWaiting
     })
   }
 
@@ -79,8 +80,13 @@ class TaskOngoing extends Component {
               <View style={styles.itemList}>
                 <View style={styles.rowItem}>
                   <View  style={styles.columnItem}>
-                    <Text style={styles.titleItem}>{item.id}. {item.title}</Text>
-                    <Text style={styles.descItem}>{item.description}</Text>
+                      <TouchableOpacity onPress={() => this.props.navigation.navigate({
+                        routeName: "TaskOngoingEdit",
+                        params: item
+                      })}>
+                        <Text style={styles.titleItem}>{item.id}. {item.title}</Text>
+                        <Text style={styles.descItem}>{item.description}</Text>
+                      </TouchableOpacity>
                   </View>
                   <TouchableHighlight
                     value={item.id}

@@ -87,11 +87,11 @@ class TaskWaiting extends Component {
   };
 
   @action
-  _deleteItem = (itemId) => {
-    const updatedTaskWaiting = this.state.taskWaiting.filter((item) => item.id !== itemId)
+  _deleteItem = (val) => {
+    const { stores } = this.props
+    stores.setTaskCancelled(val)
     this.setState({
-      taskWaiting: updatedTaskWaiting,
-      taskCancelled: [...stores.taskCancelled, itemId]
+      taskWaiting: stores.taskWaiting
     })
   }
 
@@ -109,7 +109,7 @@ class TaskWaiting extends Component {
                   <View style={styles.rowItem}>
                     <View style={styles.columnItem}>
                       <TouchableOpacity onPress={() => this.props.navigation.navigate({
-                        routeName: "TaskEdit",
+                        routeName: "TaskWaitingEdit",
                         params: item
                       })}>
                         <Text style={styles.titleItem}>{item.id}. {item.title}</Text>

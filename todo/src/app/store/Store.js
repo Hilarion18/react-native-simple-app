@@ -83,22 +83,20 @@ class Store {
   @observable taskCancelled = [
     {
       id: 12,
-      title: "create amnimated payment successed",
-      description: "create animated if payment successed and redirect after 2 seconds",
+      title: "create animated payment successed",
+      description: "create animated if payment succeed and redirect after 2 seconds",
       point: 5
     }
   ]
 
   @action
   setTaskWaiting(val){
-    console.log('===== val',val);
     this.taskOngoing = [...this.taskOngoing, val]
     this.taskWaiting = this.taskWaiting.filter(data => data.id !== val.id )
   }
 
   @action
   setTaskOngoing(val) {
-    console.log('===== val', val);
     this.taskDone = [...this.taskDone, val]
     this.taskOngoing = this.taskOngoing.filter(data => data.id !== val.id)
   }
@@ -106,21 +104,26 @@ class Store {
   @action
   setTaskCancelled(val) {
     this.taskCancelled = [...this.taskCancelled, val]
-    this.taskDone = this.taskDone.filter(data => data.id !== val.id)
+    this.taskWaiting = this.taskWaiting.filter(data => data.id !== val.id )
   }
 
   @action
   setAddTask(val) {
-    console.log(`==== val from store`, val);
     this.taskWaiting = [...this.taskWaiting, val]
   }
-  
+
   @action
   setEditTaskWaiting(val) {
-    console.log(`==== val from store`, val.id);
     const indexTaskWaiting = this.taskWaiting.map( function (item) {return item.id}).indexOf(val.id)
     this.taskWaiting[indexTaskWaiting] = val
   }
+
+  @action
+  setEditTaskOngoing(val) {
+    const indexTaskOngoing = this.taskOngoing.map( function (item) {return item.id}).indexOf(val.id)
+    this.taskOngoing[indexTaskOngoing] = val
+  }
+  
 
   @computed get todosList() {
     return [
@@ -139,15 +142,15 @@ class Store {
   ]
   }
 
-  @computed get pullTaskDone() {
-    return this.taskDone
-  }
-  @computed get pullTaskOngoing() {
-    return this.taskOngoing
-  }
-  @computed get pullTaskWaiting() {
-    return this.taskWaiting
-  }
+  // @computed get pullTaskDone() {
+  //   return this.taskDone
+  // }
+  // @computed get pullTaskOngoing() {
+  //   return this.taskOngoing
+  // }
+  // @computed get pullTaskWaiting() {
+  //   return this.taskWaiting
+  // }
 }
 
 const Stores = new Store()

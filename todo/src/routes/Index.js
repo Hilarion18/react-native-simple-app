@@ -15,7 +15,8 @@ import {
 import { HomeScreen } from '../app/screen/homepage/Home'
 import MainApp from '../app/screen/MainApp'
 import TaskAdd from '../app/screen/stack/TaskAdd'
-import TaskEdit from '../app/screen/stack/TaskEdit'
+import TaskWaitingEdit from '../app/screen/stack/TaskWaitingEdit'
+import TaskOngoingEdit from '../app/screen/stack/TaskOngoingEdit'
 import TodoScreen from '../app/screen/todo/Todo'
 
 
@@ -33,11 +34,18 @@ const AppNavigator = createStackNavigator({
       title: 'TaskAdd'
     }
   },
-  TaskEdit: {
-    screen: TaskEdit,
+  TaskWaitingEdit: {
+    screen: TaskWaitingEdit,
     navigationOptions: {
       header: null,
-      title: 'TaskEdit'
+      title: 'TaskWaitingEdit'
+    }
+  },
+  TaskOngoingEdit: {
+    screen: TaskOngoingEdit,
+    navigationOptions: {
+      header: null,
+      title: 'TaskOngoingEdit'
     }
   },
   TodoScreen: {

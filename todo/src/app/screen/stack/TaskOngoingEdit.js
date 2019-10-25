@@ -24,12 +24,12 @@ import Icon from 'react-native-vector-icons/AntDesign'
 
 // @inject('stores')
 @observer
-class TaskAdd extends Component {
+class TaskOngoingEdit extends Component {
   constructor(props) {
     super(props)
     this.state = {
       taskWaiting: [],
-      id: "",
+      id: this.props.navigation.state.params.id,
       title: "",
       description: "",
       point: 0
@@ -38,20 +38,19 @@ class TaskAdd extends Component {
 
   renderTaskWaiting() {
     const { stores } = this.props
-    // console.log(stores.taskWaiting);
-    // console.log(stores.taskWaiting[stores.taskWaiting.length-1].id + 1);
-    this.setState({
-      taskWaiting: stores.taskWaiting,
-      id: stores.taskWaiting[stores.taskWaiting.length-1].id + 1
-    })
+    // const getTask = ''
+    // this.setState({
+
+    // })
   }
 
   componentDidMount() {
     this.renderTaskWaiting()
+    console.log(`======= 2`, this.props.navigation.state.params)
   }
 
   @action
-  _addItem = async() => {
+  _editItem = async() => {
     const { stores } = this.props
     val = {
       id: this.state.id,
@@ -59,7 +58,8 @@ class TaskAdd extends Component {
       description: this.state.description,
       point: this.state.point
     }
-    stores.setAddTask(val)
+    console.log(val);
+    stores.setEditTaskOngoing(val)
     this.props.navigation.goBack()
   }
 
@@ -95,23 +95,24 @@ class TaskAdd extends Component {
         <View style={styles.input}>
           <Text style={styles.text}>Input your task title</Text>
           <TextInput 
-            placeholder="Type your title here...."
+            placeholder={this.props.navigation.state.params.title}
             style={styles.titleInput}
             value={this.state.title}
-            onChangeText={(val) => 
+            onChangeText={ (val) => 
             this.titleInputHandler(val)}
           />
           <Text style={styles.text}>Input your task content</Text>
-          <TextInput 
-            placeholder="Content here.."
+          <TextInput
+            placeholder={this.props.navigation.state.params.description}
             style={styles.contentInput}
             value={this.state.description}
             onChangeText={(val) => 
             this.descriptionInputHandler(val)}
           />
           <Text style={styles.text}>Input point of the task</Text>
-          <TextInput 
-            style={styles.pointInput}
+          <TextInput
+            // placeholder={this.props.navigation.state.params.point}
+            style={styles.contentInput}
             value={this.state.point}
             onChangeText={(val) => 
             this.pointInputHandler(val)}
@@ -121,13 +122,13 @@ class TaskAdd extends Component {
           <TouchableOpacity style={styles.borderSubmit}>
             <Text
               style={styles.submit}
-              onPress={() => this._addItem(this.state.taskInput)}
+              onPress={() => this._editItem()}
               >Submit</Text>
           </TouchableOpacity>
-        </View>
+          </View>
       </View>
     )
   }
 }
 
-export default inject('stores')(TaskAdd)
+export default inject('stores')(TaskOngoingEdit)

@@ -24,7 +24,7 @@ import Icon from 'react-native-vector-icons/AntDesign'
 
 // @inject('stores')
 @observer
-class TaskEdit extends Component {
+class TaskWaitingEdit extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -131,4 +131,4 @@ class TaskEdit extends Component {
   }
 }
 
-export default inject('stores')(TaskEdit)
+export default inject('stores')(TaskWaitingEdit)
